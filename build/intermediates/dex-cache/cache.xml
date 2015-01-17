@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="C:\Users\Joshua\workspace\mhacksV\hungr\app\build\intermediates\pre-dexed\debug\gson-2.2.2-015731718492207315cbab69640a895de2f1f8b0.jar"
+        jar="C:\Users\Joshua\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.2.2\1f96456ca233dec780aa224bff076d8e8bca3908\gson-2.2.2.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="1f96456ca233dec780aa224bff076d8e8bca3908"/>
+    <item
+        dex="C:\Users\Joshua\workspace\mhacksV\hungr\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-852b90dd253eb61774ba0ca590adfb56f04a60d1.jar"
+        jar="C:\Program Files (x86)\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156"/>
+    <item
+        dex="C:\Users\Joshua\workspace\mhacksV\hungr\app\build\intermediates\pre-dexed\debug\mobileservices-1.1.5-429056cb77a556bbb97041206ded961fad2bc592.jar"
+        jar="C:\Users\Joshua\workspace\mhacksV\hungr\app\libs\mobileservices-1.1.5.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="12188408c45b88124cb38dd2bedc9b314b5f554b"/>
+    <item
+        dex="C:\Users\Joshua\workspace\mhacksV\hungr\app\build\intermediates\pre-dexed\debug\guava-17.0-e68eee5c4542069d155e4144577ea052c4590ca1.jar"
+        jar="C:\Users\Joshua\workspace\mhacksV\hungr\app\libs\guava-17.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="9c6ef172e8de35fd8d4d8783e4821e57cdef7445"/>
+    <item
+        dex="C:\Users\Joshua\workspace\mhacksV\hungr\app\build\intermediates\pre-dexed\debug\mobileservices-2.0.1-beta-617925c9f96eed704f4cd68814383654dab070b3.jar"
+        jar="C:\Users\Joshua\workspace\mhacksV\hungr\app\libs\mobileservices-2.0.1-beta.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="f225d9c34f93107ee9f5e53f329ce3bb0438545c"/>
+
+</pre-dex-items>
