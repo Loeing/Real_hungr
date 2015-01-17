@@ -1,4 +1,4 @@
-package com.example.hungr;
+package com.reduber.hungr;
 
 import android.app.Activity;
 import android.content.Context;

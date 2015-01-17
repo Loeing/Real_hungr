@@ -1,4 +1,4 @@
-package com.example.hungr;
+package com.reduber.hungr;
 
 import static com.microsoft.windowsazure.mobileservices.MobileServiceQueryOperations.*;
 
@@ -14,6 +14,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.MobileServiceTable;
@@ -24,6 +27,8 @@ import com.microsoft.windowsazure.mobileservices.ServiceFilterResponse;
 import com.microsoft.windowsazure.mobileservices.ServiceFilterResponseCallback;
 import com.microsoft.windowsazure.mobileservices.TableOperationCallback;
 import com.microsoft.windowsazure.mobileservices.TableQueryCallback;
+import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceAuthenticationProvider;
+import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceUser;
 
 public class ToDoActivity extends Activity {
 
@@ -89,7 +94,44 @@ public class ToDoActivity extends Activity {
 		} catch (MalformedURLException e) {
 			createAndShowDialog(new Exception("There was an error creating the Mobile Service. Verify the URL"), "Error");
 		}
+
+        authenticate();
 	}
+
+    //facebook login
+    private void authenticate(){
+        ListenableFuture<MobileServiceUser> mLogin = mClient.login(MobileServiceAuthenticationProvider.Facebook);
+
+        Futures.addCallback(mLogin, new FutureCallback<MobileServiceUser>() {
+            @Override
+            public void onFailure(Throwable exc) {
+                createAndShowDialog((Exception) exc, "Error");
+            }
+            @Override
+            public void onSuccess(MobileServiceUser user) {
+                createAndShowDialog(String.format(
+                        "You are now logged in - %1$2s",
+                        user.getUserId()), "Success");
+                createTable();
+            }
+        });
+    }
+
+    private void createTable() {
+
+        // Get the Mobile Service Table instance to use
+        mToDoTable = mClient.getTable(ToDoItem.class);
+
+        mTextNewToDo = (EditText) findViewById(R.id.textNewToDo);
+
+        // Create an adapter to bind the items with the view
+        mAdapter = new ToDoItemAdapter(this, R.layout.row_list_to_do);
+        ListView listViewToDo = (ListView) findViewById(R.id.listViewToDo);
+        listViewToDo.setAdapter(mAdapter);
+
+        // Load the items from the Mobile Service
+        refreshItemsFromTable();
+    }
 	
 	/**
 	 * Initializes the activity menu

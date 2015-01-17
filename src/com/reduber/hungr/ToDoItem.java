@@ -1,4 +1,4 @@
-package com.example.hungr;
+package com.reduber.hungr;
 
 /**
  * Represents an item in a ToDo list
