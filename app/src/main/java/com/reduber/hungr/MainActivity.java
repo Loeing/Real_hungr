@@ -10,11 +10,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
-import com.example.hungr.R;
+import com.google.common.util.concurrent.ListenableFuture;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
-import com.microsoft.windowsazure.mobileservices.ServiceFilterResponseCallback;
 import com.microsoft.windowsazure.mobileservices.UserAuthenticationCallback;
 import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceAuthenticationProvider;
+import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceUser;
 import com.microsoft.windowsazure.mobileservices.http.NextServiceFilterCallback;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilter;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterRequest;
@@ -26,7 +26,9 @@ import com.microsoft.windowsazure.mobileservices.table.TableQueryCallback;
 import java.net.MalformedURLException;
 import java.util.List;
 
-public class ToDoActivity extends Activity {
+import static com.microsoft.windowsazure.mobileservices.table.query.QueryOperations.val;
+
+public class MainActivity extends Activity {
 
     public static final String SHAREDPREFFILE = "temp";
     public static final String USERIDPREF = "uid";
@@ -99,7 +101,7 @@ public class ToDoActivity extends Activity {
 
     UserAuthenticationCallback callback = new UserAuthenticationCallback() {
         @Override
-        public void onCompleted(com.microsoft.windowsazure.mobileservices.MobileServiceUser mobileServiceUser, Exception e, ServiceFilterResponse serviceFilterResponse) {
+        public void onCompleted(MobileServiceUser mobileServiceUser, Exception e, ServiceFilterResponse serviceFilterResponse) {
 
             createAndShowDialog(String.format(
                 "You are now logged in - %1$2s",
@@ -275,18 +277,19 @@ public class ToDoActivity extends Activity {
 	private class ProgressFilter implements ServiceFilter {
 		
 		@Override
-		public void handleRequest(ServiceFilterRequest request, NextServiceFilterCallback nextServiceFilterCallback,
-				final ServiceFilterResponseCallback responseCallback) {
-			runOnUiThread(new Runnable() {
+		public ListenableFuture handleRequest(ServiceFilterRequest request, NextServiceFilterCallback nextServiceFilterCallback) {
+            runOnUiThread(new Runnable() {
 
-				@Override
-				public void run() {
-					if (mProgressBar != null) mProgressBar.setVisibility(ProgressBar.VISIBLE);
-				}
-			});
-			
-			nextServiceFilterCallback.onNext(request, new ServiceFilterResponseCallback() {
-				
+                @Override
+                public void run() {
+                    if (mProgressBar != null) mProgressBar.setVisibility(ProgressBar.VISIBLE);
+                }
+            });
+
+            return nextServiceFilterCallback.onNext(request);
+        }
+                    /*, new ServiceFilterResponseCallback() {
+
 				@Override
 				public void onResponse(ServiceFilterResponse response, Exception exception) {
 					runOnUiThread(new Runnable() {
@@ -296,10 +299,10 @@ public class ToDoActivity extends Activity {
 							if (mProgressBar != null) mProgressBar.setVisibility(ProgressBar.GONE);
 						}
 					});
-					
+
 					if (responseCallback != null)  responseCallback.onResponse(response, exception);
 				}
-			});
-		}
+			});*/
+
 	}
 }

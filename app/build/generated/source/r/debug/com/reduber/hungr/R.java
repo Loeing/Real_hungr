@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.example.hungr;
+package com.reduber.hungr;
 
 public final class R {
     public static final class attr {
