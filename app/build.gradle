@@ -23,4 +23,5 @@ dependencies {
     compile 'com.google.code.gson:gson:2.2.2'
     compile files('libs/guava-17.0.jar')
     compile files('libs/mobileservices-2.0.1-beta.jar')
+
 }
