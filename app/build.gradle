@@ -5,7 +5,7 @@ android {
     buildToolsVersion "20.0.0"
 
     defaultConfig {
-        applicationId "com.example.hungr"
+        applicationId "com.reduber.hungr"
         minSdkVersion 8
         targetSdkVersion 18
     }

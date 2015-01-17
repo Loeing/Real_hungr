@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 
-import com.example.hungr.R;
-
 /**
  * Adapter to bind a ToDoItem List to a view
  */
@@ -58,8 +56,8 @@ public class ToDoItemAdapter extends ArrayAdapter<ToDoItem> {
 			public void onClick(View arg0) {
 				if (checkBox.isChecked()) {
 					checkBox.setEnabled(false);
-					if (mContext instanceof ToDoActivity) {
-						ToDoActivity activity = (ToDoActivity) mContext;
+					if (mContext instanceof MainActivity) {
+						MainActivity activity = (MainActivity) mContext;
 						activity.checkItem(currentItem);
 					}
 				}
