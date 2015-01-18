@@ -15,6 +15,8 @@ ADDED from AndroidManifest.xml:1:1
 		ADDED from AndroidManifest.xml:1:11
 uses-sdk
 ADDED from AndroidManifest.xml:6:5
+MERGED from com.daimajia.easing:library:1.0.0:7:5
+MERGED from com.daimajia.androidanimations:library:1.0.8:8:5
 	android:targetSdkVersion
 		ADDED from AndroidManifest.xml:8:9
 		INJECTED from AndroidManifest.xml:0:0
@@ -29,6 +31,7 @@ ADDED from AndroidManifest.xml:10:5
 		ADDED from AndroidManifest.xml:10:22
 application
 ADDED from AndroidManifest.xml:12:5
+MERGED from com.daimajia.easing:library:1.0.0:11:5
 	android:label
 		ADDED from AndroidManifest.xml:15:9
 	android:allowBackup

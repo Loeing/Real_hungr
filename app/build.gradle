@@ -12,7 +12,7 @@ android {
 
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
@@ -23,5 +23,11 @@ dependencies {
     compile 'com.google.code.gson:gson:2.2.2'
     compile files('libs/guava-17.0.jar')
     compile files('libs/mobileservices-2.0.1-beta.jar')
+    compile 'com.lorentzos.swipecards:library:1.0.8@aar'
+    //animations
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.daimajia.easing:library:1.0.0@aar'
+    compile 'com.daimajia.androidanimations:library:1.0.8@aar'
+
 
 }
