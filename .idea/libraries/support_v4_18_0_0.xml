@@ -3,6 +3,9 @@
     <CLASSES>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 6342934... emily's commit
 =======
 >>>>>>> parent of 6342934... emily's commit
       <root url="jar://$APPLICATION_HOME_DIR$/sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0.jar!/" />
@@ -11,6 +14,7 @@
     <SOURCES>
       <root url="jar://$APPLICATION_HOME_DIR$/sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0-sources.jar!/" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       <root url="jar://$USER_HOME$/Development/adt-bundle-mac-x86_64-20140321/sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0.jar!/" />
     </CLASSES>
@@ -18,6 +22,8 @@
     <SOURCES>
       <root url="jar://$USER_HOME$/Development/adt-bundle-mac-x86_64-20140321/sdk/extras/android/m2repository/com/android/support/support-v4/18.0.0/support-v4-18.0.0-sources.jar!/" />
 >>>>>>> origin/master
+=======
+>>>>>>> parent of 6342934... emily's commit
 =======
 >>>>>>> parent of 6342934... emily's commit
     </SOURCES>
