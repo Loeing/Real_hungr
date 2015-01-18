@@ -22,10 +22,4 @@ dependencies {
     compile 'com.android.support:support-v4:18.0.0'
     compile 'com.google.code.gson:gson:2.2.2'
     compile files('libs/mobileservices-1.1.5.jar')
-    compile 'com.jakewharton:butterknife:5.1.2'
-    //Animations
-    compile 'com.nineoldandroids:library:2.4.0'
-    compile 'com.daimajia.easing:library:1.0.0@aar'
-    compile 'com.daimajia.androidanimations:library:1.0.8@aar'
-
 }

@@ -41,7 +41,6 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+local.properties
+.idea/workspace.xml
 .idea/libraries/support_v4_18_0_0.xml
-.idea/libraries/support_v4_18_0_0.xml
-*.properties
-*.xml

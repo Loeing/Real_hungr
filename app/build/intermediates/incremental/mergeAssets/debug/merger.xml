@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="1.0.8"><source path="C:\Users\Joshua\workspace\mhacksV\hungr\app\build\intermediates\exploded-aar\com.daimajia.androidanimations\library\1.0.8\assets"/></dataSet><dataSet config="1.0.0"><source path="C:\Users\Joshua\workspace\mhacksV\hungr\app\build\intermediates\exploded-aar\com.daimajia.easing\library\1.0.0\assets"/></dataSet><dataSet config="1.0.8"><source path="C:\Users\Joshua\workspace\mhacksV\hungr\app\build\intermediates\exploded-aar\com.lorentzos.swipecards\library\1.0.8\assets"/></dataSet><dataSet config="main"><source path="C:\Users\Joshua\workspace\mhacksV\hungr\app\src\main\assets"/></dataSet><dataSet config="debug"><source path="C:\Users\Joshua\workspace\mhacksV\hungr\app\src\debug\assets"/></dataSet></merger>
+<merger version="2" >
+
+    <dataSet config="main" >
+        <source path="C:\Users\Joshua\workspace\mhacksV\hungr\app\src\main\assets" />
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="C:\Users\Joshua\workspace\mhacksV\hungr\app\src\debug\assets" />
+    </dataSet>
+
+</merger>
