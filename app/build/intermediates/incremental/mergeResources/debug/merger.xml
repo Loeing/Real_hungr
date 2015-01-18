@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merger version="2" >
 
+    <dataSet config="1.0.8" >
+        <source path="C:\Users\Joshua\workspace\mhacksV\hungr\app\build\intermediates\exploded-aar\com.lorentzos.swipecards\library\1.0.8\res" >
+            <file
+                path="C:\Users\Joshua\workspace\mhacksV\hungr\app\build\intermediates\exploded-aar\com.lorentzos.swipecards\library\1.0.8\res\values\values.xml"
+                qualifiers="" >
+                <declare-styleable name="SwipeFlingAdapterView" >
+                    <attr
+                        name="SwipeFlingStyle"
+                        format="reference" />
+                    <attr
+                        name="rotation_degrees"
+                        format="float" />
+                    <attr
+                        name="min_adapter_stack"
+                        format="integer" />
+                    <attr
+                        name="max_visible"
+                        format="integer" />
+                </declare-styleable>
+
+                <string name="app_name" >Fling Swipe Cards
+                </string>
+
+                <style name="SwipeFling" >
+                    <item name="rotation_degrees">
+15
+                    </item>
+                    <item name="min_adapter_stack">
+6
+                    </item>
+                    <item name="max_visible">
+4
+                    </item>
+                </style>
+            </file>
+        </source>
+    </dataSet>
     <dataSet config="main" >
         <source path="C:\Users\Joshua\workspace\mhacksV\hungr\app\src\main\res" >
             <file
@@ -24,13 +61,13 @@
                 qualifiers="xhdpi-v4"
                 type="drawable" />
             <file
-                name="activity_to_do"
-                path="C:\Users\Joshua\workspace\mhacksV\hungr\app\src\main\res\layout\activity_to_do.xml"
+                name="buttons"
+                path="C:\Users\Joshua\workspace\mhacksV\hungr\app\src\main\res\layout\buttons.xml"
                 qualifiers=""
                 type="layout" />
             <file
-                name="row_list_to_do"
-                path="C:\Users\Joshua\workspace\mhacksV\hungr\app\src\main\res\layout\row_list_to_do.xml"
+                name="item"
+                path="C:\Users\Joshua\workspace\mhacksV\hungr\app\src\main\res\layout\item.xml"
                 qualifiers=""
                 type="layout" />
             <file
@@ -98,6 +135,11 @@
                     <!-- API 14 theme customizations can go here. -->
                 </style>
             </file>
+            <file
+                name="activity_to_do"
+                path="C:\Users\Joshua\workspace\mhacksV\hungr\app\src\main\res\layout\activity_to_do.xml"
+                qualifiers=""
+                type="layout" />
         </source>
         <source path="C:\Users\Joshua\workspace\mhacksV\hungr\app\build\generated\res\rs\debug" />
         <source path="C:\Users\Joshua\workspace\mhacksV\hungr\app\build\generated\res\generated\debug" />

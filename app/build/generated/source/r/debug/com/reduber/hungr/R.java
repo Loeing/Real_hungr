@@ -9,23 +9,52 @@ package com.reduber.hungr;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int SwipeFlingStyle=0x7f010000;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int max_visible=0x7f010003;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int min_adapter_stack=0x7f010002;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int rotation_degrees=0x7f010001;
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int LinearLayout1=0x7f070000;
-        public static final int buttonAddToDo=0x7f070004;
-        public static final int checkToDoItem=0x7f070006;
-        public static final int listViewToDo=0x7f070005;
-        public static final int loadingProgressBar=0x7f070002;
+        public static final int frame=0x7f070000;
+        public static final int helloText=0x7f070004;
+        public static final int item_swipe_left_indicator=0x7f070005;
+        public static final int item_swipe_right_indicator=0x7f070006;
+        public static final int left=0x7f070002;
+        public static final int loadingProgressBar=0x7f070001;
         public static final int menu_refresh=0x7f070007;
-        public static final int textNewToDo=0x7f070003;
-        public static final int textViewTitle=0x7f070001;
+        public static final int right=0x7f070003;
     }
     public static final class layout {
         public static final int activity_to_do=0x7f030000;
-        public static final int row_list_to_do=0x7f030001;
+        public static final int buttons=0x7f030001;
+        public static final int item=0x7f030002;
     }
     public static final class menu {
         public static final int activity_main=0x7f060000;
@@ -51,5 +80,79 @@ public final class R {
         /**  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f050001;
+        public static final int SwipeFling=0x7f050002;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a SwipeFlingAdapterView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SwipeFlingAdapterView_SwipeFlingStyle com.example.hungr:SwipeFlingStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwipeFlingAdapterView_max_visible com.example.hungr:max_visible}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwipeFlingAdapterView_min_adapter_stack com.example.hungr:min_adapter_stack}</code></td><td></td></tr>
+           <tr><td><code>{@link #SwipeFlingAdapterView_rotation_degrees com.example.hungr:rotation_degrees}</code></td><td></td></tr>
+           </table>
+           @see #SwipeFlingAdapterView_SwipeFlingStyle
+           @see #SwipeFlingAdapterView_max_visible
+           @see #SwipeFlingAdapterView_min_adapter_stack
+           @see #SwipeFlingAdapterView_rotation_degrees
+         */
+        public static final int[] SwipeFlingAdapterView = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.example.hungr.R.attr#SwipeFlingStyle}
+          attribute's value can be found in the {@link #SwipeFlingAdapterView} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name com.example.hungr:SwipeFlingStyle
+        */
+        public static final int SwipeFlingAdapterView_SwipeFlingStyle = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.example.hungr.R.attr#max_visible}
+          attribute's value can be found in the {@link #SwipeFlingAdapterView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.example.hungr:max_visible
+        */
+        public static final int SwipeFlingAdapterView_max_visible = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.example.hungr.R.attr#min_adapter_stack}
+          attribute's value can be found in the {@link #SwipeFlingAdapterView} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.example.hungr:min_adapter_stack
+        */
+        public static final int SwipeFlingAdapterView_min_adapter_stack = 2;
+        /**
+          <p>This symbol is the offset where the {@link com.example.hungr.R.attr#rotation_degrees}
+          attribute's value can be found in the {@link #SwipeFlingAdapterView} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.example.hungr:rotation_degrees
+        */
+        public static final int SwipeFlingAdapterView_rotation_degrees = 1;
+    };
 }

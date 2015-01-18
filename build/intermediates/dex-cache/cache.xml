@@ -8,17 +8,17 @@
         revision="20.0.0"
         sha1="1f96456ca233dec780aa224bff076d8e8bca3908"/>
     <item
+        dex="C:\Users\Joshua\workspace\mhacksV\hungr\app\build\intermediates\pre-dexed\debug\butterknife-6.0.0-7dbefc25beea8dc7d9a03a78bcbb04a59b2fd34d.jar"
+        jar="C:\Users\Joshua\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife\6.0.0\3a10b25b6820e19102e118711afe6a66c0bae123\butterknife-6.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="3a10b25b6820e19102e118711afe6a66c0bae123"/>
+    <item
         dex="C:\Users\Joshua\workspace\mhacksV\hungr\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-852b90dd253eb61774ba0ca590adfb56f04a60d1.jar"
         jar="C:\Program Files (x86)\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="44ec51e9d395a47aab135e5e1b556c0007442156"/>
-    <item
-        dex="C:\Users\Joshua\workspace\mhacksV\hungr\app\build\intermediates\pre-dexed\debug\mobileservices-1.1.5-429056cb77a556bbb97041206ded961fad2bc592.jar"
-        jar="C:\Users\Joshua\workspace\mhacksV\hungr\app\libs\mobileservices-1.1.5.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="12188408c45b88124cb38dd2bedc9b314b5f554b"/>
     <item
         dex="C:\Users\Joshua\workspace\mhacksV\hungr\app\build\intermediates\pre-dexed\debug\guava-17.0-e68eee5c4542069d155e4144577ea052c4590ca1.jar"
         jar="C:\Users\Joshua\workspace\mhacksV\hungr\app\libs\guava-17.0.jar"
@@ -31,5 +31,11 @@
         jumboMode="false"
         revision="20.0.0"
         sha1="f225d9c34f93107ee9f5e53f329ce3bb0438545c"/>
+    <item
+        dex="C:\Users\Joshua\workspace\mhacksV\hungr\app\build\intermediates\pre-dexed\debug\classes-93aa5fc2ecdb0cf01656f2f8f1f7f25e39dee0cf.jar"
+        jar="C:\Users\Joshua\workspace\mhacksV\hungr\app\build\intermediates\exploded-aar\com.lorentzos.swipecards\library\1.0.8\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="47b79d52e1e93e85c61ca1b8ba1253bd6f299244"/>
 
 </pre-dex-items>

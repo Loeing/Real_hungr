@@ -3,13 +3,13 @@ package com.reduber.hungr;
 /**
  * Represents an item in a ToDo list
  */
-public class ToDoItem {
+public class FoodItem {
 
 	/**
 	 * Item text
 	 */
-	@com.google.gson.annotations.SerializedName("text")
-	private String mText;
+	@com.google.gson.annotations.SerializedName("name")
+	private String mName;
 
 	/**
 	 * Item Id
@@ -20,19 +20,19 @@ public class ToDoItem {
 	/**
 	 * Indicates if the item is completed
 	 */
-	@com.google.gson.annotations.SerializedName("complete")
-	private boolean mComplete;
+	@com.google.gson.annotations.SerializedName("price")
+	private double mPrice;
 
 	/**
 	 * ToDoItem constructor
 	 */
-	public ToDoItem() {
+	public FoodItem() {
 
 	}
 
 	@Override
 	public String toString() {
-		return getText();
+		return getName();
 	}
 
 	/**
@@ -43,27 +43,19 @@ public class ToDoItem {
 	 * @param id
 	 *            The item id
 	 */
-	public ToDoItem(String text, String id) {
-		this.setText(text);
+	public FoodItem(String text, String id) {
+		this.setName(text);
 		this.setId(id);
 	}
 
 	/**
 	 * Returns the item text
 	 */
-	public String getText() {
-		return mText;
+	public String getName() {
+		return mName;
 	}
 
-	/**
-	 * Sets the item text
-	 * 
-	 * @param text
-	 *            text to set
-	 */
-	public final void setText(String text) {
-		mText = text;
-	}
+    public void setName(String name){mName = name;}
 
 	/**
 	 * Returns the item id
@@ -85,19 +77,19 @@ public class ToDoItem {
 	/**
 	 * Indicates if the item is marked as completed
 	 */
-	public boolean isComplete() {
-		return mComplete;
+	public double getPrice() {
+		return mPrice;
 	}
 
 	/**
 	 * Marks the item as completed or incompleted
 	 */
-	public void setComplete(boolean complete) {
-		mComplete = complete;
+	public void setComplete(double price) {
+		mPrice = price;
 	}
 
 	@Override
 	public boolean equals(Object o) {
-		return o instanceof ToDoItem && ((ToDoItem) o).mId == mId;
+		return o instanceof FoodItem && ((FoodItem) o).mId == mId;
 	}
 }

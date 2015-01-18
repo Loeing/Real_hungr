@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- From: file:/C:/Users/Joshua/workspace/mhacksV/hungr/app/build/intermediates/exploded-aar/com.lorentzos.swipecards/library/1.0.8/res/values/values.xml -->
+    <eat-comment />
+
+    <declare-styleable name="SwipeFlingAdapterView">
+        <attr name="SwipeFlingStyle" format="reference" />
+        <attr name="rotation_degrees" format="float" />
+        <attr name="min_adapter_stack" format="integer" />
+        <attr name="max_visible" format="integer" />
+    </declare-styleable>
     <!-- From: file:/C:/Users/Joshua/workspace/mhacksV/hungr/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
@@ -23,6 +32,14 @@
 
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    <!-- From: file:/C:/Users/Joshua/workspace/mhacksV/hungr/app/build/intermediates/exploded-aar/com.lorentzos.swipecards/library/1.0.8/res/values/values.xml -->
+    <eat-comment />
+
+    <style name="SwipeFling">
+        <item name="rotation_degrees">15</item>
+        <item name="min_adapter_stack">6</item>
+        <item name="max_visible">4</item>
     </style>
 
 </resources>

@@ -2,15 +2,19 @@ package com.reduber.hungr;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.common.util.concurrent.ListenableFuture;
+import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
 import com.microsoft.windowsazure.mobileservices.UserAuthenticationCallback;
 import com.microsoft.windowsazure.mobileservices.authentication.MobileServiceAuthenticationProvider;
@@ -19,14 +23,13 @@ import com.microsoft.windowsazure.mobileservices.http.NextServiceFilterCallback;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilter;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterRequest;
 import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
-import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
-import com.microsoft.windowsazure.mobileservices.table.TableOperationCallback;
-import com.microsoft.windowsazure.mobileservices.table.TableQueryCallback;
 
 import java.net.MalformedURLException;
-import java.util.List;
+import java.util.ArrayList;
 
-import static com.microsoft.windowsazure.mobileservices.table.query.QueryOperations.val;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
 
 public class MainActivity extends Activity {
 
@@ -38,25 +41,17 @@ public class MainActivity extends Activity {
      */
     private MobileServiceClient mClient;
 
-    /**
-     * Mobile Service Table used to access data
-     */
-    private MobileServiceTable<ToDoItem> mToDoTable;
-
-    /**
-     * Adapter to sync the items list with the view
-     */
-    private ToDoItemAdapter mAdapter;
-
-    /**
-     * EditText containing the "New ToDo" text
-     */
-    private EditText mTextNewToDo;
 
     /**
      * Progress spinner to use for table operations
      */
     private ProgressBar mProgressBar;
+
+    private ArrayList<String> aList;
+    private ArrayAdapter<String> arrayAdapter;
+    private int i;
+
+    @InjectView(R.id.frame) SwipeFlingAdapterView flingContainer;
 
     /**
      * Initializes the activity
@@ -79,23 +74,10 @@ public class MainActivity extends Activity {
                     "PTxNpOlvcgOGnlzdFIrOXBOalHoxHO51",
                     this).withFilter(new ProgressFilter());
 
-            // Get the Mobile Service Table instance to use
-            mToDoTable = mClient.getTable(ToDoItem.class);
-
-            mTextNewToDo = (EditText) findViewById(R.id.textNewToDo);
-
-            // Create an adapter to bind the items with the view
-            mAdapter = new ToDoItemAdapter(this, R.layout.row_list_to_do);
-            ListView listViewToDo = (ListView) findViewById(R.id.listViewToDo);
-            listViewToDo.setAdapter(mAdapter);
-
-            // Load the items from the Mobile Service
-            refreshItemsFromTable();
-
         } catch (MalformedURLException e) {
             createAndShowDialog(new Exception("There was an error creating the Mobile Service. Verify the URL"), "Error");
         }
-
+        createSwiper();
         authenticate();
     }
 
@@ -106,31 +88,47 @@ public class MainActivity extends Activity {
             createAndShowDialog(String.format(
                 "You are now logged in - %1$2s",
                 mobileServiceUser.getUserId()), "Success");
-            createTable();
+            //createSwiper();
         }
     };
+
+    private void cacheUserToken(MobileServiceUser user)
+    {
+        SharedPreferences prefs = getSharedPreferences(SHAREDPREFFILE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(USERIDPREF, user.getUserId());
+        editor.putString(TOKENPREF, user.getAuthenticationToken());
+        editor.commit();
+    }
+
+    private boolean loadUserTokenCache(MobileServiceClient client)
+    {
+        SharedPreferences prefs = getSharedPreferences(SHAREDPREFFILE, Context.MODE_PRIVATE);
+        String userId = prefs.getString(USERIDPREF, "undefined");
+        if (userId == "undefined")
+            return false;
+        String token = prefs.getString(TOKENPREF, "undefined");
+        if (token == "undefined")
+            return false;
+
+        MobileServiceUser user = new MobileServiceUser(userId);
+        user.setAuthenticationToken(token);
+        client.setCurrentUser(user);
+
+        return true;
+    }
 
 
     //facebook login
     private void authenticate(){
-        mClient.login(MobileServiceAuthenticationProvider.Facebook, callback);
+       /* if (loadUserTokenCache(mClient)){
+            createTable();
+        }
+        else {*/
+       mClient.login(MobileServiceAuthenticationProvider.Facebook, callback);
     }
 
-    private void createTable() {
 
-        // Get the Mobile Service Table instance to use
-        mToDoTable = mClient.getTable(ToDoItem.class);
-
-        mTextNewToDo = (EditText) findViewById(R.id.textNewToDo);
-
-        // Create an adapter to bind the items with the view
-        mAdapter = new ToDoItemAdapter(this, R.layout.row_list_to_do);
-        ListView listViewToDo = (ListView) findViewById(R.id.listViewToDo);
-        listViewToDo.setAdapter(mAdapter);
-
-        // Load the items from the Mobile Service
-        refreshItemsFromTable();
-    }
 	
 	/**
 	 * Initializes the activity menu
@@ -147,102 +145,102 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == R.id.menu_refresh) {
-			refreshItemsFromTable();
+			//refreshItemsFromTable();
 		}
 		
 		return true;
 	}
 
-	/**
-	 * Mark an item as completed
-	 * 
-	 * @param item
-	 *            The item to mark
-	 */
-	public void checkItem(ToDoItem item) {
-		if (mClient == null) {
-			return;
-		}
 
-		// Set the item as completed and update it in the table
-		item.setComplete(true);
-		
-		mToDoTable.update(item, new TableOperationCallback<ToDoItem>() {
 
-            public void onCompleted(ToDoItem entity, Exception exception, ServiceFilterResponse response) {
-                if (exception == null) {
-                    if (entity.isComplete()) {
-                        mAdapter.remove(entity);
-                    }
-                } else {
-                    createAndShowDialog(exception, "Error");
-                }
+    public void createSwiper(){
+        //add the view via xml or programmatically
+        ButterKnife.inject(this);
+
+        aList = new ArrayList<String>();
+
+        aList.add(new FoodItem("Frita Batidos", "1").toString());
+        aList.add(new FoodItem("Pacific Rim", "2").toString());
+        aList.add(new FoodItem("The Song Bird Cafe", "3").toString());
+        aList.add(new FoodItem("Palm Palace", "4").toString());
+        aList.add(new FoodItem("Cottage Inn Pizza", "5").toString());
+        aList.add(new FoodItem("The Earle Restaurant", "6").toString());
+        aList.add(new FoodItem("Mani Osteria and Bar", "7").toString());
+
+
+        //choose your favorite adapter
+        arrayAdapter = new ArrayAdapter<String>(this, R.layout.item, R.id.helloText, aList );
+
+        //set the listener and the adapter
+        flingContainer.setAdapter(arrayAdapter);
+        flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
+            @Override
+            public void removeFirstObjectInAdapter() {
+                // this is the simplest way to delete an object from the Adapter (/AdapterView)
+                Log.d("LIST", "removed object!");
+                aList.remove(0);
+                arrayAdapter.notifyDataSetChanged();
             }
 
-        });
-	}
+            @Override
+            public void onLeftCardExit(Object dataObject) {
+                //Do something on the left!
+                //You also have access to the original object.
+                //If you want to use it just cast it (String) dataObject
+                Toast.makeText(MainActivity.this, "Left!", Toast.LENGTH_SHORT).show();
+            }
 
-	/**
-	 * Add a new item
-	 * 
-	 * @param view
-	 *            The view that originated the call
-	 */
-	public void addItem(View view) {
-		if (mClient == null) {
-			return;
-		}
+            @Override
+            public void onRightCardExit(Object dataObject) {
+                Toast.makeText(MainActivity.this, "Right!", Toast.LENGTH_SHORT).show();
+            }
 
-		// Create a new item
-		ToDoItem item = new ToDoItem();
+            @Override
+            public void onAdapterAboutToEmpty(int itemsInAdapter) {
+                // Ask for more data here
+                aList.add(new FoodItem("Marshmallow".concat(String.valueOf(i)), "8").toString());
+                arrayAdapter.notifyDataSetChanged();
+                Log.d("LIST", "notified");
+                i++;
+            }
 
-		item.setText(mTextNewToDo.getText().toString());
-		item.setComplete(false);
-		
-		// Insert the new item
-		mToDoTable.insert(item, new TableOperationCallback<ToDoItem>() {
-
-			public void onCompleted(ToDoItem entity, Exception exception, ServiceFilterResponse response) {
-				
-				if (exception == null) {
-					if (!entity.isComplete()) {
-						mAdapter.add(entity);
-					}
-				} else {
-					createAndShowDialog(exception, "Error");
-				}
-
-			}
-		});
-
-		mTextNewToDo.setText("");
-	}
-
-	/**
-	 * Refresh the list with the items in the Mobile Service Table
-	 */
-	private void refreshItemsFromTable() {
-
-		// Get the items that weren't marked as completed and add them in the
-		// adapter
-		mToDoTable.where().field("complete").eq(val(false)).execute(new TableQueryCallback<ToDoItem>() {
-
-            public void onCompleted(List<ToDoItem> result, int count, Exception exception, ServiceFilterResponse response) {
-                if (exception == null) {
-                    mAdapter.clear();
-
-                    for (ToDoItem item : result) {
-                        mAdapter.add(item);
-                    }
-
-                } else {
-                    createAndShowDialog(exception, "Error");
-                }
+            @Override
+            public void onScroll(float scrollProgressPercent) {
+                View view = flingContainer.getSelectedView();
+                view.findViewById(R.id.item_swipe_right_indicator).setAlpha(scrollProgressPercent < 0 ? -scrollProgressPercent : 0);
+                view.findViewById(R.id.item_swipe_left_indicator).setAlpha(scrollProgressPercent > 0 ? scrollProgressPercent : 0);
             }
         });
-	}
 
-	/**
+        // Optionally add an OnItemClickListener
+        flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClicked(int itemPosition, Object dataObject) {
+                makeToast(MainActivity.this, "Clicked!");
+            }
+        });
+    }
+
+    static void makeToast(Context ctx, String s){
+        Toast.makeText(ctx, s, Toast.LENGTH_SHORT).show();
+    }
+
+
+    @OnClick(R.id.right)
+    public void right() {
+        /**
+         * Trigger the right event manually.
+         */
+        flingContainer.getTopCardListener().selectRight();
+    }
+
+    @OnClick(R.id.left)
+    public void left() {
+        flingContainer.getTopCardListener().selectLeft();
+    }
+
+
+    /**
 	 * Creates a dialog and shows it
 	 * 
 	 * @param exception
